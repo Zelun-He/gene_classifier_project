@@ -12,11 +12,14 @@ cosmic = cosmic[["gene", "label"]]
 
 # Load OncoKB
 oncokb = pd.read_csv("data/cancerGeneList.tsv", sep="\t")
-oncokb = oncokb[["Hugo Symbol", "Oncogene", "TumorSuppressorGene"]]
+oncokb = oncokb[["Hugo Symbol", "Is Oncogene", "Is Tumor Suppressor Gene"]]
 oncokb = oncokb.rename(columns={"Hugo Symbol": "gene"})
-oncokb = oncokb.melt(id_vars=["gene"], value_vars=["Oncogene", "TumorSuppressorGene"])
+oncokb = oncokb.melt(id_vars=["gene"], 
+                     value_vars=["Is Oncogene", "Is Tumor Suppressor Gene"])
 oncokb = oncokb[oncokb["value"] == True]
-oncokb["label"] = oncokb["variable"].apply(lambda x: "OG" if x == "Oncogene" else "TSG")
+oncokb["label"] = oncokb["variable"].apply(
+    lambda x: "OG" if x == "Is Oncogene" else "TSG"
+)
 oncokb = oncokb[["gene", "label"]]
 
 # Combine and deduplicate
