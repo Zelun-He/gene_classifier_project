@@ -13,6 +13,10 @@ from datasets import load_dataset, DatasetDict, Dataset
 
 logging.basicConfig(level=logging.INFO)
 
+os.environ["WANDB_API_KEY"] = "c5fe3d558faac39797be8d94b941caa1f8f5b54e"
+os.environ["WANDB_PROJECT"] = "gene-sequence-classifier"  # 👈 change to your desired project name
+os.environ["WANDB_ENTITY"] = "zelunhe"       # 👈 optional, if you're logging under a team/org
+os.environ["WANDB_DISABLED"] = "true"
 
 def load_data(data_dir):
     def read_tsv(filepath):
