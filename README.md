@@ -35,13 +35,13 @@ python run_finetune.py \
   --num_train_epochs 4 \
   --learning_rate 2e-5
  Features
-✅ Hugging Face Trainer API
+Hugging Face Trainer API
 
-✅ Binary classification with custom tokenization
+Binary classification with custom tokenization
 
-✅ Manual tokenization for Windows compatibility
+Manual tokenization for Windows compatibility
 
-✅ Evaluation metrics: accuracy, precision, recall, F1
+Evaluation metrics: accuracy, precision, recall, F1
 {
   "accuracy": 0.812,
   "precision": 0.800,
