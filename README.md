@@ -4,21 +4,6 @@ This project fine-tunes a transformer-based model to classify gene sequences as 
 
 ---
 
-## 📁 Project Structure
-gene_classifier_project/
-├── run_finetune.py # Main training and evaluation script
-├── data/
-│ ├── processed/
-│ │ ├── train.tsv # Training dataset
-│ │ └── test.tsv # Test dataset
-│ └── vocab/
-│ └── vocab.txt # Custom k-mer vocabulary (e.g., 6-mers)
-├── models/
-│ └── output/ # Saved model checkpoints and logs
-└── dna6/ # (Optional) Pretrained DNABERT model
-
----
-
 ## 📊 Dataset Format
 
 Each `.tsv` file contains DNA sequences and binary labels:
