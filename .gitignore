@@ -1,0 +1,126 @@
+# Gene Classifier Project .gitignore
+
+# ===== DATA FILES =====
+# Large genomic data files
+data/raw_sequences/
+data/processed/
+*.tsv
+*.csv
+*.txt
+*.fasta
+*.fa
+*.fna
+
+# ===== MODEL FILES =====
+# Trained model checkpoints (very large)
+models/
+*.safetensors
+*.bin
+*.pt
+*.pth
+*.ckpt
+*.pkl
+
+# ===== VOCABULARY FILES =====
+# Tokenizer vocabulary (can be regenerated)
+data/vocab/
+
+# ===== PYTHON CACHE =====
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# ===== VIRTUAL ENVIRONMENTS =====
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+.venv/
+
+# ===== IDE FILES =====
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# ===== LOGS =====
+*.log
+logs/
+wandb/
+runs/
+
+# ===== JUPYTER NOTEBOOKS =====
+.ipynb_checkpoints/
+*.ipynb
+
+# ===== TEMPORARY FILES =====
+*.tmp
+*.temp
+*.bak
+*.backup
+
+# ===== ENVIRONMENT VARIABLES =====
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# ===== DATABASE FILES =====
+*.db
+*.sqlite
+*.sqlite3
+
+# ===== COMPRESSED FILES =====
+*.zip
+*.tar.gz
+*.rar
+*.7z
+
+# ===== LARGE BINARY FILES =====
+*.h5
+*.hdf5
+*.npy
+*.npz
+*.mat
+
+# ===== SPECIFIC TO THIS PROJECT =====
+# Exclude specific large files
+cancerGeneList.tsv
+Census_*.csv
+gene_labels.csv
+
+# ===== KEEP THESE FILES =====
+!data/README.md
+!scripts/README.md
+!requirements.txt
+!README.md
+!PROJECT_DOCUMENTATION.md
+!.gitignore
+
+# ===== ALLOW SMALL SAMPLE DATA =====
+# Keep small sample files for documentation
+!data/sample_*.tsv
+!data/sample_*.csv
