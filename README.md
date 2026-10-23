@@ -69,17 +69,45 @@ The [completed nested benchmark](docs/baseline_results.md) compares class prior,
 length/GC logistic regression, and 3-mer/6-mer logistic regression. Mean outer-fold
 balanced accuracy:
 
-| Baseline | Stratified gene | Similarity grouped |
+| Baseline | Stratified BA %, 95% interval | Similarity-grouped BA %, 95% interval |
 | --- | ---: | ---: |
-| Class prior | 50.0% | 50.0% |
-| Length/GC | 55.8% | 55.2% |
-| 3-mer | 57.8% | 56.5% |
-| 6-mer | 60.0% | 54.5% |
+| Class prior | 50.00 [50.00, 50.00] | 50.00 [50.00, 50.00] |
+| Length/GC | 55.75 [52.60, 58.98] | 55.18 [51.51, 58.62] |
+| 3-mer | 57.79 [54.41, 61.08] | 56.50 [53.01, 59.94] |
+| 6-mer | 59.95 [56.54, 63.17] | 54.47 [50.87, 57.68] |
 
 The report includes conditional uncertainty intervals and paired comparisons;
 the grouped 3-mer/6-mer difference is inconclusive. The plan was published before
 fitting. All 340 fits use fold-local preprocessing and gene-level labels; predictions,
 fit-gene IDs and selection evidence are [committed](evaluation/baselines-v1).
+
+The [generated results table](docs/evaluation_results.md) is rendered from the
+saved summary after an independent audit. Use the unified runner to reproduce
+fits or verify existing evidence, including without downloading sequence inputs:
+
+```bash
+# Recheck saved predictions, all fit boundaries and both uncertainty calculations.
+python scripts/run_evaluation.py verify --stage baselines \
+  --run-dir evaluation/baselines-v1 --bootstrap \
+  --report docs/evaluation_results.md
+
+# Fresh fits: sequence files must match the committed input/split hashes.
+python scripts/run_evaluation.py baselines \
+  --sequence-dir data/sequence_inputs/ensembl114-v1 \
+  --output data/evaluation/baselines-reproduced --report docs/evaluation_results.md
+
+# Pristine frozen encoder, complete window pooling, nested linear probe and audit.
+python scripts/run_evaluation.py frozen \
+  --sequence-dir data/sequence_inputs/ensembl114-v1 \
+  --model-dir models/dnabert6-pretrained-2021 \
+  --embedding-dir data/evaluation/dnabert6-embeddings-v1 \
+  --output data/evaluation/dnabert6-frozen-v1 --report docs/frozen_comparison_table.md
+```
+
+New fits require a new output directory. Each fit refers to its exact training
+gene IDs in `partitions.json`; its record saves the ID hash, class counts,
+weights, configuration and preprocessing/parameter hashes. Frozen extraction
+resumes only when all input, plan, source and runtime identities match.
 
 ## Pipeline and implementation status
 

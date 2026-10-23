@@ -1,0 +1,36 @@
+{
+  "arguments": {
+    "action": "verify",
+    "baseline_dir": "/workspace/gene_classifier_project/evaluation/baselines-v1",
+    "bootstrap": true,
+    "embedding_dir": null,
+    "initialization_record": "/workspace/gene_classifier_project/evaluation/dnabert6_initialization_v1.json",
+    "model_dir": null,
+    "output": null,
+    "plan": null,
+    "report": "docs/evaluation_results.md",
+    "run_dir": "evaluation/baselines-v1",
+    "sequence_dir": null,
+    "splits": "/workspace/gene_classifier_project/evaluation/v1/splits.json",
+    "stage": "baselines"
+  },
+  "audit": {
+    "bootstrap": "all_2000_paired_resamples_reproduced_in_both_settings",
+    "fits": 340,
+    "fitting_boundaries": "all_saved_fits_checked",
+    "genes": 809,
+    "independent_metrics": "sklearn_pooled_and_per_outer_fold",
+    "outer_predictions": 6472,
+    "partitions": 40,
+    "selected_inner_oof_predictions": 25888,
+    "status": "passed",
+    "thresholds": "recomputed_from_complete_selected_inner_oof"
+  },
+  "bootstrap_replayed": true,
+  "checked_at_utc": "2026-10-23T21:53:51.950818+00:00",
+  "run_receipt_sha256": "f90fec9af29bbc7aa3f75bf8e1db49d7475fd368e5540ef6a759cc0371700fe3",
+  "runner_sha256": "ffb40b11ded8710735fe4855c6833638152af6569916e5d9885b11d6bf0dfc72",
+  "sequence_features_reconstructed": false,
+  "stage": "baselines",
+  "status": "passed"
+}
