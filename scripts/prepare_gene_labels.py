@@ -283,6 +283,15 @@ def write_audit(output_dir, observations, manifest, sources, dataset_kind):
         "dataset_kind": dataset_kind,
         "script_sha256": hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
         "sources": sources,
+        "metadata_warnings": [
+            f"{source}:{warning}"
+            for source, metadata in sorted(sources.items())
+            for warning, applies in (
+                ("original_retrieval_date_unknown", metadata.get("retrieved_on") == "unknown"),
+                ("database_release_unreported", "unreported" in metadata.get("release", "").lower()),
+            )
+            if applies
+        ],
         "policy": {
             "eligible_roles": ["oncogene_only", "tumor_suppressor_only"],
             "stable_id_required": True,
@@ -336,11 +345,13 @@ def write_audit(output_dir, observations, manifest, sources, dataset_kind):
 
 
 def iso_date(value):
+    if value == "unknown":
+        return value
     try:
         if date.fromisoformat(value).isoformat() != value:
             raise ValueError
     except ValueError as error:
-        raise argparse.ArgumentTypeError("expected a date in YYYY-MM-DD format") from error
+        raise argparse.ArgumentTypeError("expected YYYY-MM-DD or the explicit value 'unknown'") from error
     return value
 
 
@@ -356,7 +367,8 @@ def main(argv=None):
     parser.add_argument("--oncokb", required=True, type=Path, help="OncoKB Cancer Gene List TSV")
     for source in ("cosmic", "oncokb"):
         parser.add_argument(f"--{source}-release", required=True, type=nonempty, help="Exact source release/snapshot identifier; never inferred from filename")
-        parser.add_argument(f"--{source}-retrieved-on", required=True, type=iso_date)
+        parser.add_argument(f"--{source}-retrieved-on", required=True, type=iso_date, help="Original download date (YYYY-MM-DD), or 'unknown'; recovery date is not the download date")
+        parser.add_argument(f"--{source}-provenance", type=nonempty, help="Optional immutable source URL or archive reference")
     parser.add_argument("--output-dir", required=True, type=Path, help="A new directory for this audit run")
     parser.add_argument("--dataset-kind", choices=("research", "synthetic"), default="research")
     args = parser.parse_args(argv)
@@ -367,6 +379,7 @@ def main(argv=None):
             metadata.update({
                 "release": getattr(args, f"{source}_release"),
                 "retrieved_on": getattr(args, f"{source}_retrieved_on"),
+                "provenance": getattr(args, f"{source}_provenance"),
             })
             observations.extend(rows)
             sources[source] = metadata

@@ -24,15 +24,17 @@ python scripts/prepare_gene_labels.py --help
 python -m unittest discover -s tests -v
 ```
 
-Original database exports, sequence data, and model checkpoints are not bundled.
-The synthetic fixtures test software behavior; they are not biological evidence.
-Historical dataset sizes and performance figures have not been reproduced.
+The original exports were recovered from the initial Git commit and audited:
+**816 eligible genes (447 OG, 369 TSG)**. See the
+[real-data results and recovery command](docs/label_audit_results.md).
+Raw exports remain untracked; sequence data and checkpoints are not bundled.
+Synthetic fixtures test software behavior, and model scores remain unverified.
 
 ## Pipeline and implementation status
 
 | Stage | Entry point | Status |
 | --- | --- | --- |
-| Label preparation | `scripts/prepare_gene_labels.py` | Auditable offline pipeline; real cohort requires original exports and metadata |
+| Label preparation | `scripts/prepare_gene_labels.py` | Original exports recovered and audited; release/download metadata explicitly unknown |
 | Genomic sequence retrieval | `scripts/fetch_sequences.py` | Legacy prototype; sequence/reference policy still needs verification |
 | 6-mer vocabulary and dataset preparation | `scripts/build_vocab.py`, `scripts/make_datasets.py` | Legacy prototype; reproducible grouped splits are not implemented |
 | Model training | Root `run_finetune.py` | Legacy prototype; checkpoint loading, tokenization, and loss integration need repair |

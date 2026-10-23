@@ -112,6 +112,7 @@ cancerGeneList.tsv
 Census_*.csv
 gene_labels.csv
 data/label_audit/
+data/label_sources/
 
 # ===== KEEP THESE FILES =====
 !data/README.md

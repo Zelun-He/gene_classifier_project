@@ -5,8 +5,10 @@
 > performance/reproducibility claims are not verified results. Label preparation
 > has been replaced by the provenance-preserving audit documented in
 > [docs/label_audit.md](docs/label_audit.md). Its explicit policy supersedes the
-> label merging descriptions below. Original exports and checkpoints are not
-> included, and the remaining training pipeline still needs verification.
+> label merging descriptions below. The original exports have now been recovered
+> from Git history and audited; see [the real-data results](docs/label_audit_results.md).
+> Checkpoints are not included, and the remaining training pipeline still needs
+> verification.
 
 ## Project Overview
 

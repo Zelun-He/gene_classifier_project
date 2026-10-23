@@ -287,6 +287,22 @@ class AuditIntegrationTests(unittest.TestCase):
                     audit.main(args)
                 self.assertEqual(caught.exception.code, 2)
 
+    def test_unknown_retrieval_dates_are_explicit_and_not_replaced_with_today(self):
+        with tempfile.TemporaryDirectory() as temp:
+            output = Path(temp) / "audit"
+            args = self.args(output)
+            for source in ("cosmic", "oncokb"):
+                args[args.index(f"--{source}-retrieved-on") + 1] = "unknown"
+                args[args.index(f"--{source}-release") + 1] = "unreported-original-export"
+                args.extend([f"--{source}-provenance", "https://example.org/immutable-source"])
+            with redirect_stdout(io.StringIO()):
+                self.assertEqual(audit.main(args), 0)
+            summary = json.loads((output / "summary.json").read_text())
+            self.assertEqual(len(summary["metadata_warnings"]), 4)
+            for source in ("cosmic", "oncokb"):
+                self.assertEqual(summary["sources"][source]["retrieved_on"], "unknown")
+                self.assertEqual(summary["sources"][source]["provenance"], "https://example.org/immutable-source")
+
 
 if __name__ == "__main__":
     unittest.main()

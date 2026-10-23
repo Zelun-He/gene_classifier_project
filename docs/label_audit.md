@@ -2,8 +2,24 @@
 
 This is the first research milestone: construct an explicit, reproducible binary
 label cohort before sequence selection or model comparison. The original COSMIC
-and OncoKB exports are not included in this repository. Historical dataset sizes
-and model scores have not been independently reproduced.
+and OncoKB exports were recovered from the initial Git commit. See the
+[real-data audit results](label_audit_results.md) for counts and provenance.
+They are absent from the current tree, but the recovery command below restores
+their exact bytes from Git history. Model scores remain unverified.
+
+## Recover the original exports
+
+From a full clone of this repository:
+
+```bash
+python scripts/recover_label_sources.py --output-dir data/label_sources/initial-commit
+```
+
+This reads the immutable original Git objects and verifies their SHA-256 hashes
+before publishing either file. It also writes `recovery_manifest.json`. A shallow
+clone or ZIP archive may not contain the old objects; fetch the repository history
+first. Raw exports stay untracked. See the results document for the exact audit
+command using these recovered files.
 
 ## Inputs and provenance
 
@@ -21,11 +37,16 @@ Stable ID header matching ignores case and repeated whitespace. Other required
 headers retain their spelling. UTF-8 with or without a BOM is supported.
 
 Supply the exact release or documented snapshot identifier and actual retrieval
-date for each export. A filename date is not evidence of the database release.
+date for each export. Use the explicit value `unknown` if the original retrieval
+date was not recorded. Recovery today is not evidence of the download date.
+A filename date is not evidence of the database release.
 If a release is unavailable, explicitly record that fact in a snapshot identifier
 (for example, `release-unreported-local-snapshot-2025-05-22`); do not invent a
 release. The SHA-256 of the original bytes identifies the precise input anyway.
 The audit records metadata as supplied; it does not authenticate release claims.
+Optional `--cosmic-provenance` and `--oncokb-provenance` arguments record immutable
+source URLs/archive references. The summary flags unknown retrieval dates and
+releases explicitly described as unreported.
 
 ```bash
 python scripts/prepare_gene_labels.py \
