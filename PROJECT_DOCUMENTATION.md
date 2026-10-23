@@ -9,6 +9,11 @@
 > from Git history and audited; see [the real-data results](docs/label_audit_results.md).
 > Checkpoints are not included, and the remaining training pipeline still needs
 > verification.
+> Sequence preparation is now implemented separately using complete CDS inputs
+> from GRCh38.p14 / Ensembl 114. The [sequence policy](docs/sequence_policy.md)
+> and [coverage report](docs/sequence_coverage.md) supersede the historical
+> genomic-prefix input descriptions below. Grouped model evaluation is not yet
+> implemented.
 
 ## Project Overview
 

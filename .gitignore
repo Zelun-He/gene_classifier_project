@@ -113,6 +113,8 @@ Census_*.csv
 gene_labels.csv
 data/label_audit/
 data/label_sources/
+data/sequence_cache/
+data/sequence_inputs/
 
 # ===== KEEP THESE FILES =====
 !data/README.md

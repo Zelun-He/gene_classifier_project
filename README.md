@@ -30,17 +30,34 @@ The original exports were recovered from the initial Git commit and audited:
 Raw exports remain untracked; sequence data and checkpoints are not bundled.
 Synthetic fixtures test software behavior, and model scores remain unverified.
 
+## Gene-level sequence inputs
+
+The new sequence pipeline uses **GRCh38.p14 / Ensembl 114** and one transcript
+per gene: MANE Select, then Ensembl Canonical, then longest translated CDS.
+It extracts complete spliced coding sequences plus fixed promoter and sampled
+genomic controls, with reference, transcript, strand, quality, and coverage
+metadata. Model windows retain their gene ID and pool to one gene representation.
+The completed extraction retains **809 CDS genes**, with **799 genes** available
+for the paired CDS/promoter/genomic comparison.
+
+See the [sequence policy](docs/sequence_policy.md) and
+[real cohort coverage report](docs/sequence_coverage.md). The extraction and
+pooling helpers prepare data; model training and grouped evaluation remain
+separate work.
+
 ## Pipeline and implementation status
 
 | Stage | Entry point | Status |
 | --- | --- | --- |
 | Label preparation | `scripts/prepare_gene_labels.py` | Original exports recovered and audited; release/download metadata explicitly unknown |
-| Genomic sequence retrieval | `scripts/fetch_sequences.py` | Legacy prototype; sequence/reference policy still needs verification |
+| CDS and control sequence preparation | `scripts/prepare_sequence_inputs.py` | Pinned archive, deterministic transcript selection, gene-grouped windows and coverage audit |
 | 6-mer vocabulary and dataset preparation | `scripts/build_vocab.py`, `scripts/make_datasets.py` | Legacy prototype; reproducible grouped splits are not implemented |
 | Model training | Root `run_finetune.py` | Legacy prototype; checkpoint loading, tokenization, and loss integration need repair |
 | Prediction | `predict.py` | Legacy prototype; preprocessing must be aligned with training |
 
 Do not treat the legacy training scripts as a verified end-to-end benchmark.
+`scripts/fetch_sequences.py` is also a legacy prototype; use the new sequence
+pipeline for this research protocol.
 The root training and prediction scripts currently expect an unbundled local
 checkpoint at `models/output/checkpoint-916`.
 
