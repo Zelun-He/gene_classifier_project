@@ -12,8 +12,11 @@
 > Sequence preparation is now implemented separately using complete CDS inputs
 > from GRCh38.p14 / Ensembl 114. The [sequence policy](docs/sequence_policy.md)
 > and [coverage report](docs/sequence_coverage.md) supersede the historical
-> genomic-prefix input descriptions below. Grouped model evaluation is not yet
-> implemented.
+> genomic-prefix input descriptions below. Nested stratified and similarity-grouped
+> partitions are now frozen in the [evaluation protocol](docs/evaluation_protocol.md)
+> and [feasibility report](docs/evaluation_report.md); benchmark model training
+> has not started. `checkpoint-916` is ineligible because its exposure history
+> cannot be verified.
 
 ## Project Overview
 

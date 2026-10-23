@@ -5,7 +5,7 @@ oncogenes from tumor suppressor genes when labeled data are limited. The intende
 comparison is pretrained DNA representations versus simple sequence features,
 with evaluation on held-out genes and related-gene groups.
 
-## Current research milestone: auditable labels
+## Auditable labels
 
 The label preparation pipeline preserves COSMIC and OncoKB annotations instead
 of keeping whichever label appears first. It separates exclusive roles,
@@ -17,10 +17,12 @@ hashes remain traceable.
 **Start with [the label audit guide](docs/label_audit.md).** It includes the
 real-data command, policy, output schemas, and a runnable synthetic demonstration.
 
-The audit and its tests require only Python 3.10+:
+The label audit requires only Python 3.10+. The complete test suite also needs
+the evaluation dependencies (Python 3.11+):
 
 ```bash
 python scripts/prepare_gene_labels.py --help
+python -m pip install -r requirements-evaluation.txt
 python -m unittest discover -s tests -v
 ```
 
@@ -42,8 +44,22 @@ for the paired CDS/promoter/genomic comparison.
 
 See the [sequence policy](docs/sequence_policy.md) and
 [real cohort coverage report](docs/sequence_coverage.md). The extraction and
-pooling helpers prepare data; model training and grouped evaluation remain
-separate work.
+pooling helpers prepare data; model training remains separate work.
+
+## Evaluation before training
+
+The [evaluation protocol](docs/evaluation_protocol.md) freezes **five outer folds
+and three inner folds** for both stratified-gene and similarity-grouped settings.
+The [feasibility report](docs/evaluation_report.md) documents 673 protein homology
+groups, threshold sensitivity, per-fold class counts and checkpoint provenance.
+All models consume the same [committed split IDs](evaluation/v1/splits.json).
+Every transcript, window and augmentation follows its gene; scaling, selection,
+weights and thresholds use training/inner-validation data only.
+
+`checkpoint-916` has unverifiable exposure history and is excluded from the
+benchmark. Future fits must start from documented pristine, revision-pinned
+pretraining. No new model has been trained. Split-generation dependencies are
+separate: `python -m pip install -r requirements-evaluation.txt`.
 
 ## Pipeline and implementation status
 
@@ -51,7 +67,8 @@ separate work.
 | --- | --- | --- |
 | Label preparation | `scripts/prepare_gene_labels.py` | Original exports recovered and audited; release/download metadata explicitly unknown |
 | CDS and control sequence preparation | `scripts/prepare_sequence_inputs.py` | Pinned archive, deterministic transcript selection, gene-grouped windows and coverage audit |
-| 6-mer vocabulary and dataset preparation | `scripts/build_vocab.py`, `scripts/make_datasets.py` | Legacy prototype; reproducible grouped splits are not implemented |
+| Nested evaluation design | `scripts/prepare_homology.py`, `scripts/prepare_evaluation.py` | Fixed stratified and similarity-grouped folds; feasibility and checkpoint audit completed |
+| 6-mer vocabulary and dataset preparation | `scripts/build_vocab.py`, `scripts/make_datasets.py` | Legacy prototype; use committed gene-level folds for future training |
 | Model training | Root `run_finetune.py` | Legacy prototype; checkpoint loading, tokenization, and loss integration need repair |
 | Prediction | `predict.py` | Legacy prototype; preprocessing must be aligned with training |
 

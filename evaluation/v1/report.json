@@ -1,0 +1,717 @@
+{
+  "alignment_search": {
+    "artifacts": {
+      "alignments.tsv": "20d9d04af11c150c2e7d9f616d97e139f9ab0909299d9067978845a077a583c2",
+      "mmseqs.log": "a66d5e1319a03dc9aca36f225ad1e4fe3f17b00fe84161c02a940231579bacf7",
+      "protein_manifest.json": "1649f337d5db6a65d122842ffaf641327ca4b86aa7f9bbf7d3802f4a6d7eef64",
+      "proteins.fasta": "60ddc1dbc684a4f0d51ad8f5790edd2083960ff9ff1b6a2c6dede74abb09565e"
+    },
+    "command": [
+      "/workspace/scratch/d740ba2d3356/research-tools/mmseqs/bin/mmseqs",
+      "easy-search",
+      "data/evaluation/homology-trace-v1/proteins.fasta",
+      "data/evaluation/homology-trace-v1/proteins.fasta",
+      "data/evaluation/homology-trace-v1/alignments.tsv",
+      "data/evaluation/homology-trace-v1/tmp",
+      "--prefilter-mode",
+      "2",
+      "--alignment-mode",
+      "3",
+      "-a",
+      "1",
+      "--min-seq-id",
+      "0",
+      "-c",
+      "0",
+      "-e",
+      "1e-5",
+      "--max-seqs",
+      "809",
+      "--max-accept",
+      "2147483647",
+      "--max-rejected",
+      "2147483647",
+      "--threads",
+      "4",
+      "--format-output",
+      "query,target,nident,alnlen,qstart,qend,qlen,tstart,tend,tlen,evalue,bits",
+      "--remove-tmp-files",
+      "1"
+    ],
+    "mmseqs_binary_sha256": "741949afa253eb86131f9e73ea41793ac19ed3bdb5d8e3626f8f79a6ba8945a4",
+    "mmseqs_version": "8cc5ce367b5638c4306c2d7cfc652dd099a4643f"
+  },
+  "artifacts": {
+    "homology_edges.json": "99e935cb41bd0569b362843db54caf89f55d7b6f9d1f22da5cf730ccc0d638ce",
+    "protein_manifest.json": "19fe25f309a9b62f5fad133115b8af195004ecf8d99bb3e9be09cdac3091bae4",
+    "splits.json": "74ff6611274081d3aea28e1888d21fe5541145f99d90d0d4b6ec8f7bd43f7bdf"
+  },
+  "classes": {
+    "OG": 441,
+    "TSG": 368
+  },
+  "code_sha256": {
+    "evaluation_protocol.py": "603a239e55a0f2a308263200d251bbb52d51032a5b161d2b8733edd6eb7ebc42",
+    "prepare_evaluation.py": "75a005e6ba895b3c1136daff605877a565a851ef74fd5d93da2400cf2b816283",
+    "prepare_homology.py": "dc161f8331eb02ab3fe226bc3e6cc81e4bd401d20ce8f88fffdbe5481a2733f7"
+  },
+  "genes": 809,
+  "homology_threshold_sensitivity": [
+    {
+      "bidirectional_coverage": 0.8,
+      "edges": 205,
+      "groups": 673,
+      "groups_containing_class": {
+        "OG": 347,
+        "TSG": 342
+      },
+      "identity": 0.3,
+      "largest_group": 13,
+      "mixed_label_groups": 16,
+      "singleton_groups": 586,
+      "size_histogram": {
+        "1": 586,
+        "2": 63,
+        "3": 14,
+        "4": 7,
+        "6": 1,
+        "8": 1,
+        "13": 1
+      }
+    },
+    {
+      "bidirectional_coverage": 0.8,
+      "edges": 143,
+      "groups": 699,
+      "groups_containing_class": {
+        "OG": 367,
+        "TSG": 345
+      },
+      "identity": 0.4,
+      "largest_group": 7,
+      "mixed_label_groups": 13,
+      "singleton_groups": 616,
+      "size_histogram": {
+        "1": 616,
+        "2": 65,
+        "3": 13,
+        "4": 3,
+        "5": 1,
+        "7": 1
+      }
+    },
+    {
+      "bidirectional_coverage": 0.8,
+      "edges": 101,
+      "groups": 735,
+      "groups_containing_class": {
+        "OG": 390,
+        "TSG": 351
+      },
+      "identity": 0.5,
+      "largest_group": 7,
+      "mixed_label_groups": 6,
+      "singleton_groups": 681,
+      "size_histogram": {
+        "1": 681,
+        "2": 41,
+        "3": 10,
+        "4": 1,
+        "5": 1,
+        "7": 1
+      }
+    },
+    {
+      "bidirectional_coverage": 0.8,
+      "edges": 42,
+      "groups": 773,
+      "groups_containing_class": {
+        "OG": 418,
+        "TSG": 358
+      },
+      "identity": 0.7,
+      "largest_group": 3,
+      "mixed_label_groups": 3,
+      "singleton_groups": 744,
+      "size_histogram": {
+        "1": 744,
+        "2": 22,
+        "3": 7
+      }
+    }
+  ],
+  "paired_classes": {
+    "OG": 435,
+    "TSG": 364
+  },
+  "paired_genes": 799,
+  "partial_self_alignments": [
+    {
+      "aligned_aa": 7248,
+      "gene_id": "ncbigene:94025",
+      "sequence_length_aa": 14507
+    }
+  ],
+  "policy": "gene-nested-homology-v1",
+  "sequence_summary_sha256": "2de21401e440c793922ebcb2e6eb2a781b7202ab5f7f90bebbd7b25a72e20309",
+  "settings": {
+    "similarity_grouped": {
+      "cross_outer_similarity_edges": 0,
+      "feasibility_failures": [],
+      "folds": [
+        {
+          "inner_class_counts": [
+            {
+              "train": {
+                "OG": 235,
+                "TSG": 196
+              },
+              "validation": {
+                "OG": 118,
+                "TSG": 99
+              }
+            },
+            {
+              "train": {
+                "OG": 236,
+                "TSG": 197
+              },
+              "validation": {
+                "OG": 117,
+                "TSG": 98
+              }
+            },
+            {
+              "train": {
+                "OG": 235,
+                "TSG": 197
+              },
+              "validation": {
+                "OG": 118,
+                "TSG": 98
+              }
+            }
+          ],
+          "outer_fold": 0,
+          "test": {
+            "classes": {
+              "OG": 88,
+              "TSG": 73
+            },
+            "genes": 161,
+            "groups": 134,
+            "paired_genes": 160
+          },
+          "train": {
+            "classes": {
+              "OG": 353,
+              "TSG": 295
+            },
+            "genes": 648,
+            "groups": 539,
+            "paired_genes": 639
+          }
+        },
+        {
+          "inner_class_counts": [
+            {
+              "train": {
+                "OG": 235,
+                "TSG": 196
+              },
+              "validation": {
+                "OG": 118,
+                "TSG": 99
+              }
+            },
+            {
+              "train": {
+                "OG": 235,
+                "TSG": 197
+              },
+              "validation": {
+                "OG": 118,
+                "TSG": 98
+              }
+            },
+            {
+              "train": {
+                "OG": 236,
+                "TSG": 197
+              },
+              "validation": {
+                "OG": 117,
+                "TSG": 98
+              }
+            }
+          ],
+          "outer_fold": 1,
+          "test": {
+            "classes": {
+              "OG": 88,
+              "TSG": 73
+            },
+            "genes": 161,
+            "groups": 135,
+            "paired_genes": 160
+          },
+          "train": {
+            "classes": {
+              "OG": 353,
+              "TSG": 295
+            },
+            "genes": 648,
+            "groups": 538,
+            "paired_genes": 639
+          }
+        },
+        {
+          "inner_class_counts": [
+            {
+              "train": {
+                "OG": 236,
+                "TSG": 196
+              },
+              "validation": {
+                "OG": 117,
+                "TSG": 98
+              }
+            },
+            {
+              "train": {
+                "OG": 234,
+                "TSG": 196
+              },
+              "validation": {
+                "OG": 119,
+                "TSG": 98
+              }
+            },
+            {
+              "train": {
+                "OG": 236,
+                "TSG": 196
+              },
+              "validation": {
+                "OG": 117,
+                "TSG": 98
+              }
+            }
+          ],
+          "outer_fold": 2,
+          "test": {
+            "classes": {
+              "OG": 88,
+              "TSG": 74
+            },
+            "genes": 162,
+            "groups": 134,
+            "paired_genes": 159
+          },
+          "train": {
+            "classes": {
+              "OG": 353,
+              "TSG": 294
+            },
+            "genes": 647,
+            "groups": 539,
+            "paired_genes": 640
+          }
+        },
+        {
+          "inner_class_counts": [
+            {
+              "train": {
+                "OG": 235,
+                "TSG": 196
+              },
+              "validation": {
+                "OG": 118,
+                "TSG": 99
+              }
+            },
+            {
+              "train": {
+                "OG": 236,
+                "TSG": 197
+              },
+              "validation": {
+                "OG": 117,
+                "TSG": 98
+              }
+            },
+            {
+              "train": {
+                "OG": 235,
+                "TSG": 197
+              },
+              "validation": {
+                "OG": 118,
+                "TSG": 98
+              }
+            }
+          ],
+          "outer_fold": 3,
+          "test": {
+            "classes": {
+              "OG": 88,
+              "TSG": 73
+            },
+            "genes": 161,
+            "groups": 134,
+            "paired_genes": 158
+          },
+          "train": {
+            "classes": {
+              "OG": 353,
+              "TSG": 295
+            },
+            "genes": 648,
+            "groups": 539,
+            "paired_genes": 641
+          }
+        },
+        {
+          "inner_class_counts": [
+            {
+              "train": {
+                "OG": 234,
+                "TSG": 196
+              },
+              "validation": {
+                "OG": 118,
+                "TSG": 97
+              }
+            },
+            {
+              "train": {
+                "OG": 235,
+                "TSG": 195
+              },
+              "validation": {
+                "OG": 117,
+                "TSG": 98
+              }
+            },
+            {
+              "train": {
+                "OG": 235,
+                "TSG": 195
+              },
+              "validation": {
+                "OG": 117,
+                "TSG": 98
+              }
+            }
+          ],
+          "outer_fold": 4,
+          "test": {
+            "classes": {
+              "OG": 89,
+              "TSG": 75
+            },
+            "genes": 164,
+            "groups": 136,
+            "paired_genes": 162
+          },
+          "train": {
+            "classes": {
+              "OG": 352,
+              "TSG": 293
+            },
+            "genes": 645,
+            "groups": 537,
+            "paired_genes": 637
+          }
+        }
+      ],
+      "inner_folds": {
+        "0": 3,
+        "1": 3,
+        "2": 3,
+        "3": 3,
+        "4": 3
+      },
+      "outer_folds": 5
+    },
+    "stratified_gene": {
+      "cross_outer_similarity_edges": 165,
+      "feasibility_failures": [],
+      "folds": [
+        {
+          "inner_class_counts": [
+            {
+              "train": {
+                "OG": 234,
+                "TSG": 197
+              },
+              "validation": {
+                "OG": 118,
+                "TSG": 98
+              }
+            },
+            {
+              "train": {
+                "OG": 235,
+                "TSG": 196
+              },
+              "validation": {
+                "OG": 117,
+                "TSG": 99
+              }
+            },
+            {
+              "train": {
+                "OG": 235,
+                "TSG": 197
+              },
+              "validation": {
+                "OG": 117,
+                "TSG": 98
+              }
+            }
+          ],
+          "outer_fold": 0,
+          "test": {
+            "classes": {
+              "OG": 89,
+              "TSG": 73
+            },
+            "genes": 162,
+            "groups": 158,
+            "paired_genes": 160
+          },
+          "train": {
+            "classes": {
+              "OG": 352,
+              "TSG": 295
+            },
+            "genes": 647,
+            "groups": 552,
+            "paired_genes": 639
+          }
+        },
+        {
+          "inner_class_counts": [
+            {
+              "train": {
+                "OG": 235,
+                "TSG": 196
+              },
+              "validation": {
+                "OG": 118,
+                "TSG": 98
+              }
+            },
+            {
+              "train": {
+                "OG": 235,
+                "TSG": 196
+              },
+              "validation": {
+                "OG": 118,
+                "TSG": 98
+              }
+            },
+            {
+              "train": {
+                "OG": 236,
+                "TSG": 196
+              },
+              "validation": {
+                "OG": 117,
+                "TSG": 98
+              }
+            }
+          ],
+          "outer_fold": 1,
+          "test": {
+            "classes": {
+              "OG": 88,
+              "TSG": 74
+            },
+            "genes": 162,
+            "groups": 153,
+            "paired_genes": 161
+          },
+          "train": {
+            "classes": {
+              "OG": 353,
+              "TSG": 294
+            },
+            "genes": 647,
+            "groups": 554,
+            "paired_genes": 638
+          }
+        },
+        {
+          "inner_class_counts": [
+            {
+              "train": {
+                "OG": 235,
+                "TSG": 196
+              },
+              "validation": {
+                "OG": 118,
+                "TSG": 98
+              }
+            },
+            {
+              "train": {
+                "OG": 235,
+                "TSG": 196
+              },
+              "validation": {
+                "OG": 118,
+                "TSG": 98
+              }
+            },
+            {
+              "train": {
+                "OG": 236,
+                "TSG": 196
+              },
+              "validation": {
+                "OG": 117,
+                "TSG": 98
+              }
+            }
+          ],
+          "outer_fold": 2,
+          "test": {
+            "classes": {
+              "OG": 88,
+              "TSG": 74
+            },
+            "genes": 162,
+            "groups": 149,
+            "paired_genes": 160
+          },
+          "train": {
+            "classes": {
+              "OG": 353,
+              "TSG": 294
+            },
+            "genes": 647,
+            "groups": 556,
+            "paired_genes": 639
+          }
+        },
+        {
+          "inner_class_counts": [
+            {
+              "train": {
+                "OG": 235,
+                "TSG": 196
+              },
+              "validation": {
+                "OG": 118,
+                "TSG": 98
+              }
+            },
+            {
+              "train": {
+                "OG": 235,
+                "TSG": 196
+              },
+              "validation": {
+                "OG": 118,
+                "TSG": 98
+              }
+            },
+            {
+              "train": {
+                "OG": 236,
+                "TSG": 196
+              },
+              "validation": {
+                "OG": 117,
+                "TSG": 98
+              }
+            }
+          ],
+          "outer_fold": 3,
+          "test": {
+            "classes": {
+              "OG": 88,
+              "TSG": 74
+            },
+            "genes": 162,
+            "groups": 153,
+            "paired_genes": 160
+          },
+          "train": {
+            "classes": {
+              "OG": 353,
+              "TSG": 294
+            },
+            "genes": 647,
+            "groups": 555,
+            "paired_genes": 639
+          }
+        },
+        {
+          "inner_class_counts": [
+            {
+              "train": {
+                "OG": 235,
+                "TSG": 197
+              },
+              "validation": {
+                "OG": 118,
+                "TSG": 98
+              }
+            },
+            {
+              "train": {
+                "OG": 235,
+                "TSG": 197
+              },
+              "validation": {
+                "OG": 118,
+                "TSG": 98
+              }
+            },
+            {
+              "train": {
+                "OG": 236,
+                "TSG": 196
+              },
+              "validation": {
+                "OG": 117,
+                "TSG": 99
+              }
+            }
+          ],
+          "outer_fold": 4,
+          "test": {
+            "classes": {
+              "OG": 88,
+              "TSG": 73
+            },
+            "genes": 161,
+            "groups": 154,
+            "paired_genes": 158
+          },
+          "train": {
+            "classes": {
+              "OG": 353,
+              "TSG": 295
+            },
+            "genes": 648,
+            "groups": 547,
+            "paired_genes": 641
+          }
+        }
+      ],
+      "inner_folds": {
+        "0": 3,
+        "1": 3,
+        "2": 3,
+        "3": 3,
+        "4": 3
+      },
+      "outer_folds": 5
+    }
+  }
+}

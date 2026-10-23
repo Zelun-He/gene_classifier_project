@@ -115,11 +115,13 @@ data/label_audit/
 data/label_sources/
 data/sequence_cache/
 data/sequence_inputs/
+data/evaluation/
 
 # ===== KEEP THESE FILES =====
 !data/README.md
 !scripts/README.md
 !requirements.txt
+!requirements-evaluation.txt
 !README.md
 !PROJECT_DOCUMENTATION.md
 !.gitignore
