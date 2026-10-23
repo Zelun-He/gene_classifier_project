@@ -122,6 +122,7 @@ data/evaluation/
 !scripts/README.md
 !requirements.txt
 !requirements-evaluation.txt
+!requirements-embeddings.txt
 !README.md
 !PROJECT_DOCUMENTATION.md
 !.gitignore
