@@ -1,0 +1,48 @@
+{
+  "artifact_sha256": {
+    "config": "153ebd5ed8056157c0de826628445fd25c3ed360e38a8f0c0601137cd7b0377b",
+    "tokenizer": "d8f61c247fc10f9b8c7f6baf4d31876f30076d4aaf9f31ff47b9e68badd62e61",
+    "weights": "e1688c3a3f881daff02a42b487e04612c4ec9ef33f1f02fa5f4e67d7b9865ca9"
+  },
+  "basis": [
+    "The authors' repository links this distribution as pretrained DNABERT-6",
+    "The pinned 2021 revision predates later custom-code/configuration changes",
+    "The original and current upstream weight files have the same LFS SHA-256",
+    "The extraction loader will require complete encoder tensors and permit only the MLM head to be discarded"
+  ],
+  "checkpoint_url": "https://huggingface.co/zhihan1996/DNA_bert_6/tree/a79a8fd96ad172f964a4dbef3f4d7545a5034baa",
+  "files": {
+    "config.json": {
+      "sha256": "153ebd5ed8056157c0de826628445fd25c3ed360e38a8f0c0601137cd7b0377b",
+      "size_bytes": 1110,
+      "upstream_blob_or_lfs_oid": "5b1beca6b3c35e59eaa41147838dead30ae273b9"
+    },
+    "pytorch_model.bin": {
+      "sha256": "e1688c3a3f881daff02a42b487e04612c4ec9ef33f1f02fa5f4e67d7b9865ca9",
+      "size_bytes": 359199902,
+      "upstream_blob_or_lfs_oid": "e1688c3a3f881daff02a42b487e04612c4ec9ef33f1f02fa5f4e67d7b9865ca9"
+    },
+    "special_tokens_map.json": {
+      "sha256": "303df45a03609e4ead04bc3dc1536d0ab19b5358db685b6f3da123d05ec200e3",
+      "size_bytes": 112,
+      "upstream_blob_or_lfs_oid": "e7b0375001f109a6b8873d756ad4f7bbb15fbaa5"
+    },
+    "tokenizer_config.json": {
+      "sha256": "ec70da9a619641c3b56e62cb949b8a07f2fdafdb8389b2c72649fb235a5580b3",
+      "size_bytes": 40,
+      "upstream_blob_or_lfs_oid": "9de0d36b30e859708df4d608b6f6b6d8f48e3243"
+    },
+    "vocab.txt": {
+      "sha256": "d8f61c247fc10f9b8c7f6baf4d31876f30076d4aaf9f31ff47b9e68badd62e61",
+      "size_bytes": 28703,
+      "upstream_blob_or_lfs_oid": "cc9ad53732e21ea9180f18e1fb67a38cc5702d4c"
+    }
+  },
+  "kind": "pristine_pretrained",
+  "limitations": "Pristine status follows upstream provenance and artifact checks, not an independently recovered upstream training ledger",
+  "model_id": "zhihan1996/DNA_bert_6",
+  "pretraining_overlap": "Human reference sequences, including benchmark genes, may have appeared in unsupervised pretraining; this is not a novel-sequence holdout claim",
+  "provenance_url": "https://github.com/jerryji1993/DNABERT#update-20250708",
+  "revision": "a79a8fd96ad172f964a4dbef3f4d7545a5034baa",
+  "task_finetuned": false
+}

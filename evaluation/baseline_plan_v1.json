@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "run_id": "cds-baselines-v1",
+  "protocol": "gene-nested-homology-v1",
+  "split_manifest_sha256": "74ff6611274081d3aea28e1888d21fe5541145f99d90d0d4b6ec8f7bd43f7bdf",
+  "sequence_summary_sha256": "2de21401e440c793922ebcb2e6eb2a781b7202ab5f7f90bebbd7b25a72e20309",
+  "cohort": "full_cds",
+  "settings": ["stratified_gene", "similarity_grouped"],
+  "seed": 42,
+  "models": [
+    {"id": "class_prior", "features": "constant", "estimator": "prior", "C": [null]},
+    {"id": "length_gc", "features": "log_length_gc", "estimator": "logistic", "C": [0.01, 0.1, 1.0]},
+    {"id": "kmer3", "features": "kmer", "k": 3, "estimator": "logistic", "C": [0.01, 0.1, 1.0]},
+    {"id": "kmer6", "features": "kmer", "k": 6, "estimator": "logistic", "C": [0.01, 0.1, 1.0]}
+  ],
+  "logistic": {
+    "solver": "liblinear", "l1_ratio": 0.0, "regularization": "L2",
+    "fit_intercept": true, "intercept_scaling": 1.0,
+    "max_iter": 3000, "tol": 0.000001,
+    "class_weights": "balanced_from_current_training_gene_counts",
+    "scaler": "training_only_StandardScaler_mean_and_std"
+  },
+  "features": {
+    "alphabet_order": "ACGT", "strand": "selected_transcript_5prime_to_3prime",
+    "length": "natural_log_full_cds_length", "gc": "fraction_of_full_cds_bases",
+    "kmer": "all_overlapping_full_cds_kmers_divided_by_L_minus_k_plus_1",
+    "vocabulary": "fixed_complete_4_to_the_k_alphabet_no_vocabulary_fitting",
+    "reverse_complement_collapsing": false,
+    "feature_selection": false, "augmentation": false
+  },
+  "selection": {
+    "metric": "mean_inner_balanced_accuracy_at_0.5",
+    "tie_break": "lower_C_then_candidate_id",
+    "threshold": "maximize_complete_selected_candidate_inner_oof_balanced_accuracy",
+    "threshold_ties": ["closest_to_0.5", "smaller_threshold"]
+  },
+  "uncertainty": {
+    "resamples": 2000, "seed": 42, "interval": "percentile_95",
+    "stratified_gene_unit": "gene", "similarity_grouped_unit": "homology_component",
+    "paired_across_models": true, "comparisons": "all_unordered_model_pairs",
+    "primary": "recompute_mean_of_outer_fold_balanced_accuracy_each_resample",
+    "secondary": "recompute_pooled_outer_oof_metrics_each_resample",
+    "conditioning": "fixed_outer_models_and_selected_thresholds_no_retraining"
+  },
+  "software": {"scikit_learn": "1.8.0", "numpy": "2.3.5", "scipy": "1.17.0", "thread_limit": 1},
+  "pretrained_checkpoint_required": false,
+  "neural_training_authorized_by_this_plan": false
+}

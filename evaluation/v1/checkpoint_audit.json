@@ -1,0 +1,55 @@
+{
+  "audited_revision": "161c6d7abc28f2680f0f5f385a96ca177d90c61f",
+  "available_locally": false,
+  "benchmark_allowed": false,
+  "checkpoint": "models/output/checkpoint-916",
+  "findings": [
+    "run_finetune.py loads checkpoint-916 before trainer.train(); its previous training inputs are unknown.",
+    "The same loader uses test.tsv as Trainer eval_dataset, without a separate inner validation partition.",
+    "Legacy dataset generation shuffles without a seed and writes sequence/label pairs without gene IDs.",
+    "Recovered historical train.tsv and test.tst blobs are empty placeholders, not exposure records.",
+    "Model weights, trainer state, split IDs and original training logs are absent from the audited history.",
+    "Ignored/unpublished local artifacts and external training runs cannot be audited from Git.",
+    "Missing evidence does not establish contamination or establish absence of contamination."
+  ],
+  "historical_dataset_blobs": [
+    {
+      "bytes": 0,
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "path": "gene_classfifier_project/data/processed/test.tst",
+      "rows": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 0,
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "path": "gene_classfifier_project/data/processed/train.tsv",
+      "rows": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 0,
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "path": "gene_classifier_project/data/processed/test.tst",
+      "rows": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 0,
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "path": "gene_classifier_project/data/processed/train.tsv",
+      "rows": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "historical_training_artifacts": [],
+  "initialization_requirements": [
+    "Pristine upstream pretrained model with documented provenance",
+    "Immutable model revision plus configuration/tokenizer/weight SHA-256 hashes",
+    "Fresh task head and fresh optimizer/scheduler per inner and outer fit",
+    "No task-finetuned legacy weights or continuation between folds",
+    "Record pretraining corpus overlap separately from supervised task leakage"
+  ],
+  "required_action": "restart_from_pristine_revision_pinned_pretrained_checkpoint",
+  "status": "exposure_history_unverifiable"
+}
