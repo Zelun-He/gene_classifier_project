@@ -134,3 +134,7 @@ data/evaluation/
 # Deliberately synthetic input fixtures; never database exports.
 !tests/fixtures/*_synthetic.csv
 !tests/fixtures/*_synthetic.tsv
+
+# Auditable baseline OOF predictions; raw database exports remain ignored.
+!evaluation/baselines-v1/outer_predictions.csv
+!evaluation/baselines-v1/selected_inner_oof.csv

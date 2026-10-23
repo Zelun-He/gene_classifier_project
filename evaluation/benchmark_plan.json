@@ -26,11 +26,19 @@
   "forbidden_initialization": ["models/output/checkpoint-916"],
   "initialization_record": null,
   "candidate_configurations": [],
-  "training_ready": false,
+  "neural_training_ready": false,
+  "candidate_configurations_scope": "pretrained_neural_models",
+  "classical_baselines": {
+    "plan": "evaluation/baseline_plan_v1.json",
+    "status": "completed",
+    "results": "evaluation/baselines-v1",
+    "report": "docs/baseline_results.md",
+    "pretraining_plan_commit": "460fb4031ec4b379ff19b8eff9e4a8b40f0705e5"
+  },
   "remaining_before_training": [
     "Record and verify pristine upstream initialization revision and config/tokenizer/weight hashes",
-    "Freeze model/baseline candidates, hyperparameter budgets and simplicity order",
-    "Implement a training runner that consumes fixed folds and records fit-gene lineage",
+    "Freeze pretrained neural model candidates, hyperparameter budgets and simplicity order",
+    "Implement a neural training runner that consumes fixed folds and records fit-gene lineage",
     "Verify tokenizer, pooling, gene loss normalization and fold-local preprocessing end to end"
   ]
 }

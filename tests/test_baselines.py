@@ -12,6 +12,7 @@ from sklearn import metrics as sk
 from threadpoolctl import threadpool_limits
 
 from scripts import benchmark_features as f, benchmark_metrics as m, evaluation_protocol as p, run_baselines as runner
+from scripts import verify_baseline_run as audit
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -170,6 +171,39 @@ class RunnerTests(unittest.TestCase):
         self.plan["software"]["scikit_learn"] = "latest"
         with self.assertRaises(ValueError):
             runner.verify_plan(self.plan)
+
+
+class SavedBenchmarkTests(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.root = ROOT / "evaluation/baselines-v1"
+        cls.plan = json.loads((cls.root / "plan.json").read_text())
+        cls.splits = json.loads((ROOT / "evaluation/v1/splits.json").read_text())
+        cls.partitions = json.loads((cls.root / "partitions.json").read_text())
+        cls.fits = json.loads((cls.root / "fits.json").read_text())
+        cls.candidates = json.loads((cls.root / "candidate_scores.json").read_text())
+        cls.inner = audit.load_rows(cls.root / "selected_inner_oof.csv")
+        cls.outer = audit.load_rows(cls.root / "outer_predictions.csv")
+        cls.summary = json.loads((cls.root / "summary.json").read_text())
+
+    def test_published_benchmark_replays_independent_metrics_and_all_fit_boundaries(self):
+        result = audit.verify(self.root, ROOT / "evaluation/v1/splits.json", ROOT / "evaluation/baseline_plan_v1.json")
+        self.assertEqual(result["status"], "passed")
+        self.assertEqual((result["fits"], result["outer_predictions"], result["selected_inner_oof_predictions"]), (340, 6472, 25888))
+
+    def test_audit_rejects_a_threshold_record_containing_an_outer_test_gene(self):
+        first = dict(self.inner[0])
+        key = f"{first['setting']}/outer{first['outer_fold']}/refit"
+        first["gene_id"] = self.partitions[key]["test"][0]
+        changed = [first, *self.inner[1:]]
+        with self.assertRaisesRegex(ValueError, "Threshold OOF IDs"):
+            audit.audit_records(self.plan, self.splits, self.partitions, self.fits, self.candidates, changed, self.outer, self.summary)
+
+    def test_audit_rejects_selection_that_ignores_inner_scores(self):
+        changed = [dict(r) for r in self.candidates]
+        changed[0]["selected"] = False
+        with self.assertRaisesRegex(ValueError, "candidate selection count"):
+            audit.audit_records(self.plan, self.splits, self.partitions, self.fits, changed, self.inner, self.outer, self.summary)
 
 
 if __name__ == "__main__":

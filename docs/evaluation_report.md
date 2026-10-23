@@ -1,7 +1,8 @@
 # Evaluation design and feasibility report
 
-No model was trained. These results describe the fixed cohort and partitions,
-not classifier performance. See the [protocol](evaluation_protocol.md),
+This report covers the design stage completed before model training. These
+results describe the fixed cohort and partitions. Completed classical model
+results are now in the [baseline report](baseline_results.md). See the [protocol](evaluation_protocol.md),
 [machine-readable report](../evaluation/v1/report.json),
 [frozen splits](../evaluation/v1/splits.json), and
 [checkpoint audit](../evaluation/v1/checkpoint_audit.json).

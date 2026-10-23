@@ -14,9 +14,10 @@
 > and [coverage report](docs/sequence_coverage.md) supersede the historical
 > genomic-prefix input descriptions below. Nested stratified and similarity-grouped
 > partitions are now frozen in the [evaluation protocol](docs/evaluation_protocol.md)
-> and [feasibility report](docs/evaluation_report.md); benchmark model training
-> has not started. `checkpoint-916` is ineligible because its exposure history
-> cannot be verified.
+> and [feasibility report](docs/evaluation_report.md). Four classical baselines
+> have now completed under this protocol; see the [baseline results](docs/baseline_results.md).
+> No DNA encoder has been trained. `checkpoint-916` is ineligible because its
+> exposure history cannot be verified.
 
 ## Project Overview
 

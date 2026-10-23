@@ -1,2 +1,5 @@
 # Auto detect text files and perform LF normalization
 * text=auto
+
+# Keep the review focused on source and reports; full run evidence stays available.
+evaluation/baselines-v1/** linguist-generated=true

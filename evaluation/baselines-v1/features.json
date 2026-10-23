@@ -1,0 +1,38 @@
+{
+  "class_prior": {
+    "feature_names_sha256": "19de0a36a3b9e1f29ea5b2ef7d6bfa6087371b4a0e56a5c780066e868237a9bd",
+    "gene_order_sha256": "f4d008b8809cd8d9d013f6858ea20474403a5e490e27ee31bb313945ba1599e0",
+    "matrix_sha256": "7dcabe4032d7d24538f07ed14a44c190e0d8955d80a883fce39f7cbbaddd7847",
+    "shape": [
+      809,
+      1
+    ]
+  },
+  "kmer3": {
+    "feature_names_sha256": "2ba11e5d63f9057c8f98508ce17ebfdac1f6b95994d9e9ffbd52c790d99c08e1",
+    "gene_order_sha256": "f4d008b8809cd8d9d013f6858ea20474403a5e490e27ee31bb313945ba1599e0",
+    "matrix_sha256": "0a1b352af8bf8f2fd7c53247a51a9280c1f85ceb2231af82b4ab018842d84daa",
+    "shape": [
+      809,
+      64
+    ]
+  },
+  "kmer6": {
+    "feature_names_sha256": "9e037524e2fb130c15774d803e353256f49dcaaa856fefd2013ecd175e02b74e",
+    "gene_order_sha256": "f4d008b8809cd8d9d013f6858ea20474403a5e490e27ee31bb313945ba1599e0",
+    "matrix_sha256": "10162bc79947eb4eb9ff092c5ccdb1668d74fdd971053e1b4336206adf497740",
+    "shape": [
+      809,
+      4096
+    ]
+  },
+  "length_gc": {
+    "feature_names_sha256": "6df5bb9393a546cd0229ff6e4b866da406ba900b3366d9d0089bc4e32e4092c3",
+    "gene_order_sha256": "f4d008b8809cd8d9d013f6858ea20474403a5e490e27ee31bb313945ba1599e0",
+    "matrix_sha256": "c645b658b2c7900025537d544a536cfabe39e63441d94ee437d3d48321570ea2",
+    "shape": [
+      809,
+      2
+    ]
+  }
+}

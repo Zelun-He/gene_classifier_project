@@ -30,7 +30,8 @@ The original exports were recovered from the initial Git commit and audited:
 **816 eligible genes (447 OG, 369 TSG)**. See the
 [real-data results and recovery command](docs/label_audit_results.md).
 Raw exports remain untracked; sequence data and checkpoints are not bundled.
-Synthetic fixtures test software behavior, and model scores remain unverified.
+Synthetic fixtures test software behavior; historical transformer scores remain
+unverified. Completed classical baseline results are documented below.
 
 ## Gene-level sequence inputs
 
@@ -57,9 +58,28 @@ Every transcript, window and augmentation follows its gene; scaling, selection,
 weights and thresholds use training/inner-validation data only.
 
 `checkpoint-916` has unverifiable exposure history and is excluded from the
-benchmark. Future fits must start from documented pristine, revision-pinned
-pretraining. No new model has been trained. Split-generation dependencies are
-separate: `python -m pip install -r requirements-evaluation.txt`.
+benchmark. Future pretrained-DNA fits must start from documented pristine, revision-pinned
+pretraining. Classical baselines have now completed; no DNA encoder has been
+trained. Evaluation dependencies are separate:
+`python -m pip install -r requirements-evaluation.txt`.
+
+## First baseline results
+
+The [completed nested benchmark](docs/baseline_results.md) compares class prior,
+length/GC logistic regression, and 3-mer/6-mer logistic regression. Mean outer-fold
+balanced accuracy:
+
+| Baseline | Stratified gene | Similarity grouped |
+| --- | ---: | ---: |
+| Class prior | 50.0% | 50.0% |
+| Length/GC | 55.8% | 55.2% |
+| 3-mer | 57.8% | 56.5% |
+| 6-mer | 60.0% | 54.5% |
+
+The report includes conditional uncertainty intervals and paired comparisons;
+the grouped 3-mer/6-mer difference is inconclusive. The plan was published before
+fitting. All 340 fits use fold-local preprocessing and gene-level labels; predictions,
+fit-gene IDs and selection evidence are [committed](evaluation/baselines-v1).
 
 ## Pipeline and implementation status
 
@@ -68,6 +88,7 @@ separate: `python -m pip install -r requirements-evaluation.txt`.
 | Label preparation | `scripts/prepare_gene_labels.py` | Original exports recovered and audited; release/download metadata explicitly unknown |
 | CDS and control sequence preparation | `scripts/prepare_sequence_inputs.py` | Pinned archive, deterministic transcript selection, gene-grouped windows and coverage audit |
 | Nested evaluation design | `scripts/prepare_homology.py`, `scripts/prepare_evaluation.py` | Fixed stratified and similarity-grouped folds; feasibility and checkpoint audit completed |
+| Classical benchmark | `scripts/run_baselines.py`, `scripts/verify_baseline_run.py` | Four predeclared baselines completed; nested predictions and independent audit saved |
 | 6-mer vocabulary and dataset preparation | `scripts/build_vocab.py`, `scripts/make_datasets.py` | Legacy prototype; use committed gene-level folds for future training |
 | Model training | Root `run_finetune.py` | Legacy prototype; checkpoint loading, tokenization, and loss integration need repair |
 | Prediction | `predict.py` | Legacy prototype; preprocessing must be aligned with training |

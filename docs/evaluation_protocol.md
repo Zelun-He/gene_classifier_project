@@ -1,8 +1,9 @@
 # Evaluation protocol: gene-nested-homology-v1
 
-Status: partitions and feasibility checks completed **before training**. No new
-model performance is claimed. The legacy training entry point does not implement
-this protocol and must not be used to produce benchmark scores.
+Status: partitions and feasibility checks were completed **before training**.
+The first classical baseline run is now documented in the [baseline report](baseline_results.md).
+The legacy neural training entry point does not implement this protocol and
+must not be used to produce benchmark scores.
 
 ## Cohort and estimands
 
@@ -141,7 +142,8 @@ weight; more windows must not increase its labelled sample weight.
 `scripts/evaluation_protocol.py` supplies partition lookup, disjointness checks,
 derived-row assignment, training-only transformer fitting, gene-count class
 weights, inner-OOF ID/threshold checks and an initialization-record guard.
-They are reusable guards, not a completed training runner. ID checks cannot
+The [classical runner](../scripts/run_baselines.py) consumes these guards and
+the frozen folds. Neural training remains separate work. ID checks cannot
 prove that a caller's claimed OOF model was actually fitted correctly: retain
 fit-gene IDs, initialization hashes and preprocessing lineage for every fit.
 
@@ -176,13 +178,16 @@ were recovered. Historical train/test files are empty, and the legacy loader
 uses `test.tsv` as its evaluation dataset. This establishes uncertainty, not
 proof of contamination or proof of a clean checkpoint.
 
-Restart every benchmark fit from a documented **pristine upstream pretrained
+Restart every pretrained-DNA benchmark fit from a documented **pristine upstream pretrained
 checkpoint** with immutable revision, configuration/tokenizer/weight SHA-256
 hashes, fresh task head and fresh optimizer. Do not use `checkpoint-916`, even
-on the new split. No replacement model has been trained or downloaded here;
+on the new split. No replacement DNA checkpoint has been selected or downloaded;
 the [benchmark plan](../evaluation/benchmark_plan.json) leaves initialization and
-candidate configuration unresolved, so training remains blocked until those
-concrete records are completed. The initialization guard validates required
+neural candidate configuration unresolved, so neural training remains blocked
+until those concrete records are completed. Classical baselines initialize fresh
+unfitted estimators and need no pretrained checkpoint; their distinct
+[predeclared plan](../evaluation/baseline_plan_v1.json) governs those fits.
+The initialization guard validates required
 record structure; model-card and artifact provenance still require review.
 
 ## Reproduction

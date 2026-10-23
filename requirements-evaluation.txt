@@ -1,4 +1,5 @@
-# Split generation only; the legacy model environment is separate.
+# Split generation and classical benchmarks; the neural environment is separate.
 numpy==2.3.5
 scipy==1.17.0
 scikit-learn==1.8.0
+threadpoolctl==3.6.0
