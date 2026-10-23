@@ -111,6 +111,7 @@ runs/
 cancerGeneList.tsv
 Census_*.csv
 gene_labels.csv
+data/label_audit/
 
 # ===== KEEP THESE FILES =====
 !data/README.md
@@ -124,3 +125,7 @@ gene_labels.csv
 # Keep small sample files for documentation
 !data/sample_*.tsv
 !data/sample_*.csv
+
+# Deliberately synthetic input fixtures; never database exports.
+!tests/fixtures/*_synthetic.csv
+!tests/fixtures/*_synthetic.tsv

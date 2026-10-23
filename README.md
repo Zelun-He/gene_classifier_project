@@ -1,63 +1,59 @@
-# 🧬 Gene Sequence Classification: Oncogenes vs Tumor Suppressors
+# Gene Sequence Classification: Oncogenes vs Tumor Suppressors
 
-This project fine-tunes a transformer-based model to classify gene sequences as **oncogenes** or **tumor suppressors** using limited labeled data. Built using Hugging Face Transformers and PyTorch, the model uses a DNABERT-style k-mer tokenizer and supports both custom and pretrained BERT backbones.
+Research with Dr. Hui Liu on whether DNA sequence representations can distinguish
+oncogenes from tumor suppressor genes when labeled data are limited. The intended
+comparison is pretrained DNA representations versus simple sequence features,
+with evaluation on held-out genes and related-gene groups.
 
----
+## Current research milestone: auditable labels
 
-## 📊 Dataset Format
+The label preparation pipeline preserves COSMIC and OncoKB annotations instead
+of keeping whichever label appears first. It separates exclusive roles,
+explicit dual roles, unresolved annotations, and genes without a target role.
+Only exclusive roles with a source-provided stable identifier enter the binary
+cohort. Original records, inclusion decisions, source release metadata, and file
+hashes remain traceable.
 
-Each `.tsv` file contains DNA sequences and binary labels:
-<sequence> <label>
-ATGCATGCATG TSG
-CGTAGCTAGCT ONC
+**Start with [the label audit guide](docs/label_audit.md).** It includes the
+real-data command, policy, output schemas, and a runnable synthetic demonstration.
 
-- `"TSG"` → Tumor Suppressor (label 0)  
-- `"ONC"` → Oncogene (label 1)
-
----
-
-## ⚙️ Dependencies
-
-Install with:
+The audit and its tests require only Python 3.10+:
 
 ```bash
-pip install transformers datasets scikit-learn
-python run_finetune.py \
-  --task_name dnaprom \
-  --model_type dna \
-  --tokenizer_name data/vocab \
-  --model_name_or_path bert-base-uncased \
-  --do_train --do_eval \
-  --data_dir data/processed \
-  --output_dir models/output \
-  --max_seq_length 512 \
-  --per_gpu_train_batch_size 2 \
-  --num_train_epochs 4 \
-  --learning_rate 2e-5
- Features
-Hugging Face Trainer API
+python scripts/prepare_gene_labels.py --help
+python -m unittest discover -s tests -v
+```
 
-Binary classification with custom tokenization
+Original database exports, sequence data, and model checkpoints are not bundled.
+The synthetic fixtures test software behavior; they are not biological evidence.
+Historical dataset sizes and performance figures have not been reproduced.
 
-Manual tokenization for Windows compatibility
+## Pipeline and implementation status
 
-Evaluation metrics: accuracy, precision, recall, F1
-{
-  "accuracy": 0.812,
-  "precision": 0.800,
-  "recall": 0.850,
-  "f1": 0.823,
-  "eval_loss": 0.423
-}
-Acknowledgments
-Zelun He – Undergraduate Researcher
+| Stage | Entry point | Status |
+| --- | --- | --- |
+| Label preparation | `scripts/prepare_gene_labels.py` | Auditable offline pipeline; real cohort requires original exports and metadata |
+| Genomic sequence retrieval | `scripts/fetch_sequences.py` | Legacy prototype; sequence/reference policy still needs verification |
+| 6-mer vocabulary and dataset preparation | `scripts/build_vocab.py`, `scripts/make_datasets.py` | Legacy prototype; reproducible grouped splits are not implemented |
+| Model training | Root `run_finetune.py` | Legacy prototype; checkpoint loading, tokenization, and loss integration need repair |
+| Prediction | `predict.py` | Legacy prototype; preprocessing must be aligned with training |
 
-Dr. Hui Liu – Research Supervisor (Gene Classification)
+Do not treat the legacy training scripts as a verified end-to-end benchmark.
+The root training and prediction scripts currently expect an unbundled local
+checkpoint at `models/output/checkpoint-916`.
 
-Model inspiration: DNABERT
-Future Work
-Fine-tune using real DNABERT weights
+## Labels and downstream compatibility
 
-Add attention visualization for biological interpretation
+The audited export uses `gene,label`, with `TSG` for tumor suppressor genes
+(class 0) and `OG` for oncogenes (class 1). Historical documentation and model
+output also use `ONC` for the oncogene class.
 
-Extend to multi-class or multi-label gene function prediction
+Review a research audit before copying its filtered `gene_labels.csv` to the
+legacy `data/gene_labels.csv` path. Existing processed datasets must be rebuilt
+for the audited cohort. See the guide for the full handoff procedure.
+
+## Acknowledgments
+
+- Zelun He — Researcher
+- Dr. Hui Liu — Research Supervisor
+- Model inspiration: DNABERT

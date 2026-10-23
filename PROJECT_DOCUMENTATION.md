@@ -1,5 +1,13 @@
 # Gene Sequence Classifier Project Documentation
 
+> **Implementation status (2026-10-23):** This document describes the historical
+> prototype and intended design. Its dataset sizes, model configuration, and
+> performance/reproducibility claims are not verified results. Label preparation
+> has been replaced by the provenance-preserving audit documented in
+> [docs/label_audit.md](docs/label_audit.md). Its explicit policy supersedes the
+> label merging descriptions below. Original exports and checkpoints are not
+> included, and the remaining training pipeline still needs verification.
+
 ## Project Overview
 
 This project implements a deep learning model to classify gene sequences as **oncogenes (OG)** or **tumor suppressor genes (TSG)** using limited labeled data. The approach leverages transfer learning by fine-tuning pre-trained DNA language models (DNABERT) on cancer gene classification tasks.
@@ -180,8 +188,9 @@ python predict.py
 
 ### Data Processing
 ```bash
-# Prepare gene labels
-python scripts/prepare_gene_labels.py
+# Prepare gene labels: see docs/label_audit.md for required source paths,
+# releases/snapshots, retrieval dates, and output directory.
+python scripts/prepare_gene_labels.py --help
 
 # Fetch sequences
 python scripts/fetch_sequences.py
