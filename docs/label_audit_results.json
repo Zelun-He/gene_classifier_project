@@ -1,0 +1,120 @@
+{
+  "artifacts": {
+    "dual_role_genes.csv": {
+      "sha256": "8b0f611c2e0e062341b00e9ffb766bfe379dac58eddd5c417c62ba94b499637e",
+      "size_bytes": 29621
+    },
+    "excluded_genes.csv": {
+      "sha256": "3cec9a19c6e3f00ef6705126fd2e1dd0b3c673ef14f536bddc69ce32215cc19c",
+      "size_bytes": 100625
+    },
+    "gene_labels.csv": {
+      "sha256": "8a4a5e06fd0bd7129ca3b4fc73b88ea3dcac8f04a5951a35911a63c31babf71d",
+      "size_bytes": 7567
+    },
+    "gene_manifest.csv": {
+      "sha256": "bed2feb135f61f385bf0466d78c13c0104d9beab5f4cc4c905689331b5c5a72a",
+      "size_bytes": 255973
+    },
+    "source_annotations.jsonl": {
+      "sha256": "d9f88b3dfbdcba302c8fe5f630c9b3e4eba8973cd7cc0d1d8fe0168a8831af8a",
+      "size_bytes": 1384054
+    },
+    "unresolved_genes.csv": {
+      "sha256": "96512d2976eff63e77f5144b24607c61c93d31aae55448cda43b5128b5bb53a1",
+      "size_bytes": 13772
+    }
+  },
+  "counts": {
+    "categories": {
+      "dual_role": 125,
+      "oncogene_only": 447,
+      "tumor_suppressor_only": 369,
+      "unannotated": 287,
+      "unresolved": 64
+    },
+    "excluded_groups": 476,
+    "exclusion_reasons": {
+      "conflicting_stable_ids": 1,
+      "explicit_dual_role_annotation": 125,
+      "missing_role_annotation": 43,
+      "missing_stable_id": 2,
+      "no_oncogene_or_tsg_annotation": 287,
+      "opposing_exclusive_annotations": 21
+    },
+    "identity_groups": 1292,
+    "included_genes": 816,
+    "included_label_support": {
+      "cosmic": 167,
+      "cosmic+oncokb": 303,
+      "oncokb": 346
+    },
+    "included_labels": {
+      "OG": 447,
+      "TSG": 369
+    },
+    "included_source_presence": {
+      "cosmic": 46,
+      "cosmic+oncokb": 454,
+      "oncokb": 316
+    },
+    "input_records": 1950
+  },
+  "dataset_kind": "research",
+  "limitations": [
+    "Database annotations are not independent experimental validation.",
+    "Source-provided identifiers are preserved, not verified against a current nomenclature authority.",
+    "Missing identifiers and ambiguous annotations require manual resolution before inclusion.",
+    "Identity groups with conflicting IDs may contain multiple biological genes; group counts are not gene counts."
+  ],
+  "metadata_warnings": [
+    "cosmic:original_retrieval_date_unknown",
+    "cosmic:database_release_unreported",
+    "oncokb:original_retrieval_date_unknown",
+    "oncokb:database_release_unreported"
+  ],
+  "policy": {
+    "aliases": "merge_only_when_symbols_or_source_provided_stable_ids_match",
+    "blank_boolean_is_unknown": true,
+    "conflicts": "exclude_entire_connected_identity_group; no_source_priority",
+    "eligible_roles": [
+      "oncogene_only",
+      "tumor_suppressor_only"
+    ],
+    "fusion_only_is_unannotated": true,
+    "representative_symbol": "lexicographic_with_oncokb_preference",
+    "single_source_support_allowed": true,
+    "stable_id_required": true
+  },
+  "policy_version": "exclusive-cancer-roles-v1",
+  "schema_version": 1,
+  "script_sha256": "d10c66b647b4d687321bcc78fef1fb0f076906f2bca79030f2bbb096a3162b57",
+  "sources": {
+    "cosmic": {
+      "explicit_dual_role_records": 72,
+      "filename": "Census_allThu May 22 21_50_23 2025.csv",
+      "input_records": 758,
+      "provenance": "https://github.com/Zelun-He/gene_classifier_project/blob/0b3b43e04fa7b613e6eec9634669cb5f05c3563f/gene_classfifier_project/Census_allThu%20May%2022%2021_50_23%202025.csv",
+      "records_with_annotation_issues": 43,
+      "records_without_stable_id": 3,
+      "release": "unreported-original-export",
+      "retrieved_on": "unknown",
+      "sha256": "5f5fbe6e68533e9f771680eb1473f6242913993f2429891c9bf48af363b7d9de",
+      "size_bytes": 182420,
+      "unique_normalized_symbols": 758
+    },
+    "oncokb": {
+      "explicit_dual_role_records": 68,
+      "filename": "cancerGeneList.tsv",
+      "input_records": 1192,
+      "provenance": "https://github.com/Zelun-He/gene_classifier_project/blob/0b3b43e04fa7b613e6eec9634669cb5f05c3563f/gene_classfifier_project/cancerGeneList.tsv",
+      "records_with_annotation_issues": 0,
+      "records_without_stable_id": 0,
+      "release": "unreported-original-export",
+      "retrieved_on": "unknown",
+      "sha256": "802e957942bbfbe73127824e9b1841a4973bfa978741f81b99bd8ec4353f3994",
+      "size_bytes": 127121,
+      "unique_normalized_symbols": 1192
+    }
+  }
+}

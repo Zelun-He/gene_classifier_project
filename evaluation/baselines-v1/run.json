@@ -1,0 +1,32 @@
+{
+  "artifacts": {
+    "candidate_scores.json": "638f7557445a1dca8bf6857372afe7a161b13a6591c7218c26285ec4e681d72a",
+    "features.json": "34256aa8eca88a0ade50d0b27bf70a1542b37ad1f7c2e7f4cbaa4f4750494138",
+    "fits.json": "2feec713088ff171abf06f8dd1f53efbffbb8e9fbdc31d976fd6feef885d8257",
+    "outer_predictions.csv": "e45cfcf2afae3c17428dea5d940e77e87a6e75409e80e46e3fae8c3ada63ca3a",
+    "partitions.json": "9c9e1db903d7d877238ca4aaf0b080faa6f9807fde81cbe9ad183c8820459d03",
+    "plan.json": "73610dba4fd63c7b9eda0b78394e8188161e8cf7f8553d61d42938ac0cd2fc11",
+    "selected_inner_oof.csv": "9caf915992a204224fb8b89f56f1a907451f31730fb1cdd87a694fb79b625ea0",
+    "summary.json": "cd422988c515729e0ed2d0366b569be6beae8995faeea2b4d4e83800fbf81313"
+  },
+  "code_sha256": {
+    "benchmark_features.py": "c7e3e5b6eb051fde7161b76c4bac9eab614f877778bbeaf0d72497da648f0dd2",
+    "benchmark_metrics.py": "4d8b4027edbbad86f13fcf25ef7482f03a0c43ce2899da90696211d75efc8734",
+    "evaluation_protocol.py": "603a239e55a0f2a308263200d251bbb52d51032a5b161d2b8733edd6eb7ebc42",
+    "run_baselines.py": "38e8da20df45fe66ea59a979e27eb39a42fe21b84cba60a7d499eaa5352a1ab6"
+  },
+  "fits": 340,
+  "genes": 809,
+  "outer_predictions": 6472,
+  "plan_sha256": "c81fdc35c0535ebc06716411950013f019c086ef31a48fac6956628f8f8c0389",
+  "selected_inner_oof_predictions": 25888,
+  "sequence_summary_sha256": "2de21401e440c793922ebcb2e6eb2a781b7202ab5f7f90bebbd7b25a72e20309",
+  "software": {
+    "numpy": "2.3.5",
+    "python": "3.12.14",
+    "scikit_learn": "1.8.0",
+    "scipy": "1.17.0"
+  },
+  "split_manifest_sha256": "74ff6611274081d3aea28e1888d21fe5541145f99d90d0d4b6ec8f7bd43f7bdf",
+  "status": "completed"
+}

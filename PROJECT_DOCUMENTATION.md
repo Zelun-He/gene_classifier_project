@@ -1,5 +1,24 @@
 # Gene Sequence Classifier Project Documentation
 
+> **Implementation status (2026-10-23):** This document describes the historical
+> prototype and intended design. Its dataset sizes, model configuration, and
+> performance/reproducibility claims are not verified results. Label preparation
+> has been replaced by the provenance-preserving audit documented in
+> [docs/label_audit.md](docs/label_audit.md). Its explicit policy supersedes the
+> label merging descriptions below. The original exports have now been recovered
+> from Git history and audited; see [the real-data results](docs/label_audit_results.md).
+> Checkpoints are not included, and the remaining training pipeline still needs
+> verification.
+> Sequence preparation is now implemented separately using complete CDS inputs
+> from GRCh38.p14 / Ensembl 114. The [sequence policy](docs/sequence_policy.md)
+> and [coverage report](docs/sequence_coverage.md) supersede the historical
+> genomic-prefix input descriptions below. Nested stratified and similarity-grouped
+> partitions are now frozen in the [evaluation protocol](docs/evaluation_protocol.md)
+> and [feasibility report](docs/evaluation_report.md). Four classical baselines
+> have now completed under this protocol; see the [baseline results](docs/baseline_results.md).
+> No DNA encoder has been trained. `checkpoint-916` is ineligible because its
+> exposure history cannot be verified.
+
 ## Project Overview
 
 This project implements a deep learning model to classify gene sequences as **oncogenes (OG)** or **tumor suppressor genes (TSG)** using limited labeled data. The approach leverages transfer learning by fine-tuning pre-trained DNA language models (DNABERT) on cancer gene classification tasks.
@@ -180,8 +199,9 @@ python predict.py
 
 ### Data Processing
 ```bash
-# Prepare gene labels
-python scripts/prepare_gene_labels.py
+# Prepare gene labels: see docs/label_audit.md for required source paths,
+# releases/snapshots, retrieval dates, and output directory.
+python scripts/prepare_gene_labels.py --help
 
 # Fetch sequences
 python scripts/fetch_sequences.py

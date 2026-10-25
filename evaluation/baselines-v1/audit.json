@@ -1,0 +1,13 @@
+{
+  "bootstrap": "all_2000_paired_resamples_reproduced_in_both_settings",
+  "features_and_scalers": "reconstructed_all_features_and_training_only_scaler_statistics",
+  "fits": 340,
+  "fitting_boundaries": "all_saved_fits_checked",
+  "genes": 809,
+  "independent_metrics": "sklearn_pooled_and_per_outer_fold",
+  "outer_predictions": 6472,
+  "partitions": 40,
+  "selected_inner_oof_predictions": 25888,
+  "status": "passed",
+  "thresholds": "recomputed_from_complete_selected_inner_oof"
+}

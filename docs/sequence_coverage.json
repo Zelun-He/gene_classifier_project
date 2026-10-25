@@ -1,0 +1,179 @@
+{
+  "artifacts": {
+    "gene_coverage.csv": {
+      "sha256": "3b86bd6a859324eaa7064a2b018129a82a16503416132c2ad386e068fa9a6403",
+      "size_bytes": 205303
+    },
+    "paired_genes.csv": {
+      "sha256": "411cfa629bedf6dcd0c24f291aa2c773bd40911fd8e4e8c628702dd77f63e0c9",
+      "size_bytes": 18795
+    },
+    "region_manifest.csv": {
+      "sha256": "946e93b50ff3ac1a0411acd381a1c76dea86c8ae097a1c400fb07bb64edc4076",
+      "size_bytes": 738487
+    },
+    "response_provenance.json": {
+      "sha256": "467fe9d068c5cae3b25fe7a1da275dfb7fc323ba769da0f31c1272c0e20ca25e",
+      "size_bytes": 178694
+    },
+    "sequences.fasta": {
+      "sha256": "25da6067f6331c1df43cd2ecd981fda68a5209d46131c1510f795a693e42ee7c",
+      "size_bytes": 8708602
+    },
+    "transcript_candidates.jsonl": {
+      "sha256": "0e13967d585b64c1a6c295d2126a19c37d336ab7a9b4a20f891d27b1aafd3446",
+      "size_bytes": 2364295
+    },
+    "windows.jsonl": {
+      "sha256": "bd8553a4b112e861d702f78744acc3fa2b9fc074b35d46245a178eb47a2163ba",
+      "size_bytes": 14220062
+    }
+  },
+  "assembly": "GRCh38.p14",
+  "assembly_accession": "GCA_000001405.29",
+  "biological_sample_unit": "gene_id; never individual windows",
+  "biomart_archive": "https://may2025.archive.ensembl.org/biomart/martservice",
+  "cds_longer_than_515bp": 770,
+  "cds_qc_flags": {
+    "non_ATG_start": 2
+  },
+  "ensembl_release": 114,
+  "excluded_genes": 7,
+  "excluded_reasons": {
+    "ambiguous_primary_coding_gene_mapping": 2,
+    "ambiguous_sequence": 1,
+    "no_ensembl_gene_mapping": 4
+  },
+  "genomic_sample_span_coverage_fraction": {
+    "max": 0.9948064211520302,
+    "mean": 0.20246366587544506,
+    "median": 0.10682244940538285,
+    "min": 0.002665513230602903
+  },
+  "hypothetical_cds_prefix_515bp_retention_fraction": {
+    "max": 1.0,
+    "mean": 0.36366470407141205,
+    "median": 0.2919501133786848,
+    "min": 0.0118325521551328
+  },
+  "input_genes": 816,
+  "inputs": {
+    "cds": {
+      "ambiguous_fraction": {
+        "max": 0.0,
+        "mean": 0.0,
+        "median": 0.0,
+        "min": 0.0
+      },
+      "genes": 809,
+      "per_class": {
+        "OG": 441,
+        "TSG": 368
+      },
+      "region_length_bp": {
+        "max": 43524,
+        "mean": 2516.4919653893694,
+        "median": 1764,
+        "min": 135
+      },
+      "regions": 809,
+      "total_region_bp": 2035842,
+      "windows": 4389
+    },
+    "genomic": {
+      "ambiguous_fraction": {
+        "max": 0.0,
+        "mean": 0.0,
+        "median": 0.0,
+        "min": 0.0
+      },
+      "excluded_relative_to_cds": {
+        "excluded_gene_shorter_than_2048bp": 10
+      },
+      "genes": 799,
+      "per_class": {
+        "OG": 435,
+        "TSG": 364
+      },
+      "region_length_bp": {
+        "max": 2048,
+        "mean": 2048,
+        "median": 2048,
+        "min": 2048
+      },
+      "regions": 2397,
+      "total_region_bp": 4909056,
+      "windows": 11985
+    },
+    "promoter": {
+      "ambiguous_fraction": {
+        "max": 0.0,
+        "mean": 0.0,
+        "median": 0.0,
+        "min": 0.0
+      },
+      "excluded_relative_to_cds": {},
+      "genes": 809,
+      "per_class": {
+        "OG": 441,
+        "TSG": 368
+      },
+      "region_length_bp": {
+        "max": 2048,
+        "mean": 2048,
+        "median": 2048,
+        "min": 2048
+      },
+      "regions": 809,
+      "total_region_bp": 1656832,
+      "windows": 4045
+    }
+  },
+  "label_audit_summary_sha256": "d8c5b7b5192409f1e155dd5572ef3063a4494ff082156070a42900cf36dee040",
+  "limitations": [
+    "No classifier is trained by this pipeline.",
+    "Noncoding genes and non-nuclear/alternative loci are outside this CDS baseline.",
+    "Canonical/longest fallbacks and CDS start/stop flags require sensitivity analyses.",
+    "Promoter and genomic comparisons require paired genes and identical gene-grouped splits.",
+    "Genomic windows may overlap and sample only part of a gene span.",
+    "515bp retention is hypothetical for CDS; the legacy pipeline truncated genomic rather than CDS sequence."
+  ],
+  "paired_all_inputs_genes": 799,
+  "paired_all_inputs_per_class": {
+    "OG": 435,
+    "TSG": 364
+  },
+  "parameters": {
+    "genomic_region_bp": 2048,
+    "genomic_regions_per_gene_max": 3,
+    "max_ambiguous_fraction": 0.0,
+    "promoter_downstream_bp": 512,
+    "promoter_upstream_bp": 1536,
+    "python_version": "3.12.14",
+    "seed": 42,
+    "window_bp": 510
+  },
+  "per_class": {
+    "OG": {
+      "input": 447,
+      "retained_cds": 441
+    },
+    "TSG": {
+      "input": 369,
+      "retained_cds": 368
+    }
+  },
+  "policy_version": "gene-cds-mane-canonical-v1",
+  "pooling": "mean non-padding/non-special token embeddings within window; base-length-weighted windows within region; equal regions within gene/type; classify one pooled vector",
+  "rest_archive": "https://may2025.rest.ensembl.org",
+  "retained_cds_genes": 809,
+  "schema_version": 1,
+  "script_sha256": {
+    "ensembl_snapshot.py": "ed44e0662bdb397f65aeff09f80a603a93f21fc16c1fa6c0b6e3ba3dfcb772fb",
+    "prepare_sequence_inputs.py": "e20b48525150780b43b37fdab6ecf00b48c5c782c34c1326bbe8e4d99c5332e8"
+  },
+  "selection_rules": {
+    "Ensembl_Canonical": 1,
+    "MANE_Select": 808
+  }
+}

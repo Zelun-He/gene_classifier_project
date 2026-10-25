@@ -1,0 +1,44 @@
+{
+  "policy": "gene-nested-homology-v1",
+  "split_manifest": "evaluation/v1/splits.json",
+  "primary_metric": "mean_outer_balanced_accuracy",
+  "positive_class": "OG",
+  "outer_folds": 5,
+  "inner_folds": 3,
+  "seed": 42,
+  "settings": ["stratified_gene", "similarity_grouped"],
+  "cohorts": {"cds": 809, "paired_inputs": 799},
+  "homology": {
+    "space": "selected_transcript_protein",
+    "identity_min": 0.30,
+    "query_coverage_min": 0.80,
+    "target_coverage_min": 0.80,
+    "evalue_max": 0.00001,
+    "grouping": "undirected_connected_components"
+  },
+  "threshold_selection": "complete_inner_oof_balanced_accuracy",
+  "candidate_selection": "mean_inner_balanced_accuracy_at_0.5",
+  "candidate_ties": ["simpler_predeclared_candidate", "candidate_id"],
+  "threshold_ties": ["closest_to_0.5", "smaller_threshold"],
+  "neural_final_epochs": "ceil_median_inner_selected_epochs",
+  "bootstrap": {"resamples": 2000, "seed": 42, "interval": "percentile_95",
+                "stratified_unit": "gene", "grouped_unit": "homology_component"},
+  "forbidden_initialization": ["models/output/checkpoint-916"],
+  "initialization_record": null,
+  "candidate_configurations": [],
+  "neural_training_ready": false,
+  "candidate_configurations_scope": "pretrained_neural_models",
+  "classical_baselines": {
+    "plan": "evaluation/baseline_plan_v1.json",
+    "status": "completed",
+    "results": "evaluation/baselines-v1",
+    "report": "docs/baseline_results.md",
+    "pretraining_plan_commit": "460fb4031ec4b379ff19b8eff9e4a8b40f0705e5"
+  },
+  "remaining_before_training": [
+    "Record and verify pristine upstream initialization revision and config/tokenizer/weight hashes",
+    "Freeze pretrained neural model candidates, hyperparameter budgets and simplicity order",
+    "Implement a neural training runner that consumes fixed folds and records fit-gene lineage",
+    "Verify tokenizer, pooling, gene loss normalization and fold-local preprocessing end to end"
+  ]
+}

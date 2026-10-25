@@ -111,11 +111,18 @@ runs/
 cancerGeneList.tsv
 Census_*.csv
 gene_labels.csv
+data/label_audit/
+data/label_sources/
+data/sequence_cache/
+data/sequence_inputs/
+data/evaluation/
 
 # ===== KEEP THESE FILES =====
 !data/README.md
 !scripts/README.md
 !requirements.txt
+!requirements-evaluation.txt
+!requirements-embeddings.txt
 !README.md
 !PROJECT_DOCUMENTATION.md
 !.gitignore
@@ -124,3 +131,11 @@ gene_labels.csv
 # Keep small sample files for documentation
 !data/sample_*.tsv
 !data/sample_*.csv
+
+# Deliberately synthetic input fixtures; never database exports.
+!tests/fixtures/*_synthetic.csv
+!tests/fixtures/*_synthetic.tsv
+
+# Auditable baseline OOF predictions; raw database exports remain ignored.
+!evaluation/baselines-v1/outer_predictions.csv
+!evaluation/baselines-v1/selected_inner_oof.csv

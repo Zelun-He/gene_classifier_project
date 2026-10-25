@@ -1,0 +1,11 @@
+Gene Symbol,Entrez GeneId,Role in Cancer,Fixture note
+SYNTH_OG,900000101,oncogene,synthetic only
+SYNTH_TSG,900000102,TSG,synthetic only
+SYNTH_DUAL,900000103,"TSG, oncogene",synthetic only
+SYNTH_CONFLICT,900000104,oncogene,synthetic only
+SYNTH_FUSION,900000105,fusion,synthetic only
+SYNTH_UNKNOWN,900000106,oncogene,synthetic only
+SYNTH_ALIAS_OLD,900000107,oncogene,synthetic only
+SYNTH_ID_CONFLICT,900000108,TSG,synthetic only
+SYNTH_NO_ID,,TSG,synthetic only
+SYNTH_COSMIC_ONLY,900000110,TSG,synthetic only
