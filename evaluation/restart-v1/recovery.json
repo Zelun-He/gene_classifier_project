@@ -1,0 +1,17 @@
+{
+  "all_original_gene_and_group_fold_assignments_unchanged": true,
+  "biological_artifacts": {
+    "gene_coverage.csv": "3b86bd6a859324eaa7064a2b018129a82a16503416132c2ad386e068fa9a6403",
+    "paired_genes.csv": "411cfa629bedf6dcd0c24f291aa2c773bd40911fd8e4e8c628702dd77f63e0c9",
+    "region_manifest.csv": "946e93b50ff3ac1a0411acd381a1c76dea86c8ae097a1c400fb07bb64edc4076",
+    "sequences.fasta": "25da6067f6331c1df43cd2ecd981fda68a5209d46131c1510f795a693e42ee7c",
+    "transcript_candidates.jsonl": "0e13967d585b64c1a6c295d2126a19c37d336ab7a9b4a20f891d27b1aafd3446",
+    "windows.jsonl": "bd8553a4b112e861d702f78744acc3fa2b9fc074b35d46245a178eb47a2163ba"
+  },
+  "new_sequence_summary_sha256": "f8bdc16b6d812fb7c6a83716b2b17a36b21ea600d8cfb687d479d9d7a6165448",
+  "new_splits_sha256": "c03157b5ca3d1cc774c82de2427a1930572820c063167c9f0549bb79e8afe3d7",
+  "new_transport_responses": true,
+  "old_sequence_summary_sha256": "2de21401e440c793922ebcb2e6eb2a781b7202ab5f7f90bebbd7b25a72e20309",
+  "old_splits_sha256": "74ff6611274081d3aea28e1888d21fe5541145f99d90d0d4b6ec8f7bd43f7bdf",
+  "status": "verified"
+}

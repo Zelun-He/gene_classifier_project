@@ -1,0 +1,106 @@
+{
+  "cohort": "full_cds",
+  "features": {
+    "alphabet_order": "ACGT",
+    "augmentation": false,
+    "feature_selection": false,
+    "gc": "fraction_of_full_cds_bases",
+    "kmer": "all_overlapping_full_cds_kmers_divided_by_L_minus_k_plus_1",
+    "length": "natural_log_full_cds_length",
+    "reverse_complement_collapsing": false,
+    "strand": "selected_transcript_5prime_to_3prime",
+    "vocabulary": "fixed_complete_4_to_the_k_alphabet_no_vocabulary_fitting"
+  },
+  "logistic": {
+    "class_weights": "balanced_from_current_training_gene_counts",
+    "fit_intercept": true,
+    "intercept_scaling": 1.0,
+    "l1_ratio": 0.0,
+    "max_iter": 3000,
+    "regularization": "L2",
+    "scaler": "training_only_StandardScaler_mean_and_std",
+    "solver": "liblinear",
+    "tol": 1e-06
+  },
+  "models": [
+    {
+      "C": [
+        null
+      ],
+      "estimator": "prior",
+      "features": "constant",
+      "id": "class_prior"
+    },
+    {
+      "C": [
+        0.01,
+        0.1,
+        1.0
+      ],
+      "estimator": "logistic",
+      "features": "log_length_gc",
+      "id": "length_gc"
+    },
+    {
+      "C": [
+        0.01,
+        0.1,
+        1.0
+      ],
+      "estimator": "logistic",
+      "features": "kmer",
+      "id": "kmer3",
+      "k": 3
+    },
+    {
+      "C": [
+        0.01,
+        0.1,
+        1.0
+      ],
+      "estimator": "logistic",
+      "features": "kmer",
+      "id": "kmer6",
+      "k": 6
+    }
+  ],
+  "neural_training_authorized_by_this_plan": false,
+  "pretrained_checkpoint_required": false,
+  "protocol": "gene-nested-homology-v1",
+  "run_id": "cds-baselines-v1",
+  "schema_version": 1,
+  "seed": 42,
+  "selection": {
+    "metric": "mean_inner_balanced_accuracy_at_0.5",
+    "threshold": "maximize_complete_selected_candidate_inner_oof_balanced_accuracy",
+    "threshold_ties": [
+      "closest_to_0.5",
+      "smaller_threshold"
+    ],
+    "tie_break": "lower_C_then_candidate_id"
+  },
+  "sequence_summary_sha256": "f8bdc16b6d812fb7c6a83716b2b17a36b21ea600d8cfb687d479d9d7a6165448",
+  "settings": [
+    "stratified_gene",
+    "similarity_grouped"
+  ],
+  "software": {
+    "numpy": "2.3.5",
+    "scikit_learn": "1.8.0",
+    "scipy": "1.17.0",
+    "thread_limit": 1
+  },
+  "split_manifest_sha256": "c03157b5ca3d1cc774c82de2427a1930572820c063167c9f0549bb79e8afe3d7",
+  "uncertainty": {
+    "comparisons": "all_unordered_model_pairs",
+    "conditioning": "fixed_outer_models_and_selected_thresholds_no_retraining",
+    "interval": "percentile_95",
+    "paired_across_models": true,
+    "primary": "recompute_mean_of_outer_fold_balanced_accuracy_each_resample",
+    "resamples": 2000,
+    "secondary": "recompute_pooled_outer_oof_metrics_each_resample",
+    "seed": 42,
+    "similarity_grouped_unit": "homology_component",
+    "stratified_gene_unit": "gene"
+  }
+}
